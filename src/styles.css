@@ -1,0 +1,89 @@
+h2 {
+    word-spacing: 20px;
+}
+
+.enter {
+    min-width: 57%;
+    padding: 0;
+    margin: 0;
+    font-weight: 700 ;
+    color: black;
+    text-align: center;
+}
+
+.col-4{
+font-weight: 300;
+}
+
+
+.first-search {
+    background-color: purple;
+    color: white;
+    font-weight: 500;
+}
+
+.live-search {
+    background-color: purple;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    top: -30px;
+    right: -490px;
+}
+
+
+.result {
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.cloudy {
+    font-size: 100px;
+    color: purple;
+    text-align: center;
+    padding-right: 580px;
+    position: relative;
+    right: -108px;
+}
+
+.details{
+    width: auto;
+    margin: auto;
+}
+
+.updates {
+    width: auto;
+    margin: auto;
+    position: relative;
+    top: 5px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.temperature {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.degree-link {
+    text-decoration: none;
+    position: relative;
+    top: -30px;
+}
+
+.hyphen {
+    position: relative;
+    top: -30px;
+}
+
+#temperature-description {
+    text-transform: capitalize;
+    
+}
+h4 {
+    font-size: 50px;
+    text-align: center;
+}
