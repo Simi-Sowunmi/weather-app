@@ -37,11 +37,9 @@ function formatDate(timestamp) {
  let formattedDate = `${currentDate} ${month} ${year}`
  return formattedDate;
 }
-  
 
 
 function displayTemperature(response) {
-  console.log(response.data)
   let temperature = Math.round(response.data.current.temp_c);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
@@ -64,11 +62,11 @@ function displayTemperature(response) {
   windSpeedElement.innerHTML = `Wind Speed- ${windSpeed} km/h`;
   timeElement.innerHTML = formatTime(response.data.location.localtime);
   dateElement.innerHTML = formatDate(response.data.location.localtime_epoch * 1000);
-  mainIconElement.setAttribute("src", `icons/${response.data.current.condition.code}.png`)
-
+  mainIconElement.setAttribute("src", `assets/icons/${response.data.current.condition.code}.png`)
 }
 
 function displayLiveTemperature(response) {
+  console.log(response.data)
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
@@ -86,6 +84,7 @@ function displayLiveTemperature(response) {
   humidityElement.innerHTML = `Humidity- ${humidity}%`;
   pressureElement.innerHTML = `Pressure- ${pressure}`;
   windSpeedElement.innerHTML = `Wind Speed- ${windSpeed} km/h`;
+  mainIconElement.setAttribute("src", `assets/icons/${response.data.weather.icon}.png`)
 }
 
 //API WEATHER

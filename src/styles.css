@@ -1,3 +1,8 @@
+body {
+    background-size: cover
+}
+
+
 h2 {
     word-spacing: 20px;
 }
@@ -20,13 +25,13 @@ font-weight: 300;
 }
 
 .first-search {
-    background-color: purple;
+    background-color: black;
     color: white;
     font-weight: 500;
 }
 
 .live-search {
-    background-color: purple;
+    background-color: black;
     color: white;
     font-weight: 500;
     position: relative;
@@ -34,16 +39,20 @@ font-weight: 300;
     right: -230px;
 }
 
+.main-details{
+    color: white;
+}
 
 .result {
     font-size: 60px;
     font-weight: 700;
     text-align: center;
+    color: white;
 }
 
 .cloudy {
     font-size: 100px;
-    color: purple;
+    color: white;
     text-align: center;
     padding-right: 580px;
     position: relative;
@@ -53,6 +62,7 @@ font-weight: 300;
 .details{
     width: auto;
     margin: auto;
+    color: white;
 }
 
 .updates {
@@ -60,6 +70,7 @@ font-weight: 300;
     margin: auto;
     position: relative;
     top: 5px;
+    color: white;
 }
 
 .card-body {
@@ -69,21 +80,25 @@ font-weight: 300;
 .temperature {
     font-size: 60px;
     font-weight: 700;
+    color: white;
 }
 
 .degree-link {
     text-decoration: none;
     position: relative;
     top: -30px;
+    color: white;
 }
 
 .hyphen {
     position: relative;
     top: -30px;
+    color: white;
 }
 
 #temperature-description {
     text-transform: capitalize;
+    color: white;
     
 }
 h4 {
