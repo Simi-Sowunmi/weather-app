@@ -40,6 +40,7 @@ function formatDate(timestamp) {
 
 
 function displayTemperature(response) {
+  console.log(response.data)
   let temperature = Math.round(response.data.current.temp_c);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
@@ -52,7 +53,7 @@ function displayTemperature(response) {
   let result = document.querySelector(".result");
   let timeElement = document.querySelector(".liveDayTime");
   let dateElement = document.querySelector(".liveDate");
-  let mainIconElement = document.querySelector("#main-icon")
+  let mainIcon = document.querySelector("#main-icon");
 
   result.innerHTML = response.data.location.name.toUpperCase();
   temperatureElement.innerHTML = `${temperature}`;
@@ -62,8 +63,11 @@ function displayTemperature(response) {
   windSpeedElement.innerHTML = `Wind Speed- ${windSpeed} km/h`;
   timeElement.innerHTML = formatTime(response.data.location.localtime);
   dateElement.innerHTML = formatDate(response.data.location.localtime_epoch * 1000);
-  mainIconElement.setAttribute("src", `assets/icons/${response.data.current.condition.code}.png`)
+  mainIcon.setAttribute("src",`assets/icons/${response.data.current.condition.code}.png`);
+  mainIcon.setAttribute("alt", response.data.current.condition.text);
+
 }
+
 
 function displayLiveTemperature(response) {
   console.log(response.data)
@@ -77,6 +81,7 @@ function displayLiveTemperature(response) {
   let windSpeed = response.data.wind.speed;
   let windSpeedElement = document.querySelector("#current-wind-speed");
   let result = document.querySelector(".result");
+  let mainIcon = document.querySelector("#main-icon")
 
   result.innerHTML = response.data.name.toUpperCase();
   temperatureElement.innerHTML = `${temperature}`;
@@ -84,8 +89,41 @@ function displayLiveTemperature(response) {
   humidityElement.innerHTML = `Humidity- ${humidity}%`;
   pressureElement.innerHTML = `Pressure- ${pressure}`;
   windSpeedElement.innerHTML = `Wind Speed- ${windSpeed} km/h`;
-  mainIconElement.setAttribute("src", `assets/icons/${response.data.weather.icon}.png`)
+  mainIcon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  mainIcon.setAttribute("alt", response.data.weather[0].description);
 }
+
+
+//API TO SHOW THE WEATHER OF CITIES LISTED BY CLICKING ON THEM
+function searchLagos(city) { 
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiLagosUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
+
+  axios.get(apiLagosUrl).then(displayTemperature)
+}
+
+function searchParis(city) { 
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiParisUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
+
+  axios.get(apiParisUrl).then(displayTemperature)
+}
+
+function searchAccra(city) { 
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiAccraUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
+
+  axios.get(apiAccraUrl).then(displayTemperature)
+}
+
+function searchLondon(city) { 
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiLondonUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
+
+  axios.get(apiLondonUrl).then(displayTemperature)
+}
+
+
 
 //API WEATHER
 function searchCity(city) { 
@@ -102,7 +140,55 @@ function searchForm(event) {
   result.innerHTML = city.toUpperCase();
   searchCity(city);
 }
-  
+
+
+//FUNCTION TO INPUT SEARCH VALUE OF LISTED CITIES
+function searchList(event) {
+  event.preventDefault();
+  let city = "LAGOS";
+  let result = document.querySelector(".result");
+  result.innerHTML = "LAGOS";
+  searchLagos(city);
+}
+
+function searchList2(event) {
+  event.preventDefault();
+  let city = "PARIS";
+  let result = document.querySelector(".result");
+  result.innerHTML = "PARIS";
+  searchParis(city);
+}
+
+function searchList3(event) {
+  event.preventDefault();
+  let city = "ACCRA";
+  let result = document.querySelector(".result");
+  result.innerHTML = "ACCRA";
+  searchAccra(city);
+}
+
+function searchList4(event) {
+  event.preventDefault();
+  let city = "LONDON";
+  let result = document.querySelector(".result");
+  result.innerHTML = "LONDON";
+  searchLondon(city);
+}
+
+//LET STATEMENTS TO SELECT LISTED CITIES IN ORDER TO ASSIGN FUNCTIONS
+let lagos = document.querySelector(".lagos");
+lagos.addEventListener("click", searchList)
+
+let paris = document.querySelector(".paris");
+paris.addEventListener("click", searchList2)
+
+let accra = document.querySelector(".accra");
+accra.addEventListener("click", searchList3)
+
+let london = document.querySelector(".london");
+london.addEventListener("click", searchList4)
+
+
 let form = document.querySelector("form");
 form.addEventListener("submit", searchForm);
 searchCity("Lagos")

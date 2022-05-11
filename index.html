@@ -13,11 +13,11 @@
 <body background="assets/images/evening.jpg">
         <!-- <div class="card"> -->
         <div class="card-body">
-    <h2>
-        Lagos
-        Paris
-        Accra
-        London
+    <h2 class="heading">
+        <a class="lagos" href="#">Lagos</a>
+        <a class="paris" href="#">Paris</a>
+        <a class="accra" href="#">Accra</a>
+        <a class="london" href="#">London</a>
         <i class="fa-solid fa-location-dot"></i>
     </h2>
    <br>
@@ -37,11 +37,11 @@
    <div class="row">
    <div class="col-3 details">
        <div class="last-updated">Last Updated:</div>
-       <div class="liveDayTime">Thursday </div>
+       <div class="liveDayTime"> </div>
        <div class="liveDate ">14th April 2022</div>
    </div>
-   <div class="col-3">
-     <i class="fa-solid fa-cloud-bolt cloudy" id="main-icon"></i> </div>
+   <div class="col-3 main-img">
+     <img id="main-icon" src="assets/icons/1030.png" alt="weather condition"> </div>
    <div  class="col-3 updates">
      <div id="current-humidity"> Humidity- 45% </div>
      <div id="current-wind-speed">Wind Speed- 19.2 </div>
@@ -49,14 +49,15 @@
    </div>
    </div>
 
+    <h6 id="temperature-description"></h6>
     <span>
-     <span class="temperature">28</span>
+     <span class="temperature"></span>
      <a href="#" class="degree-link" id="celsius-link">°C</a> 
      <span class="hyphen"> | </span>
      <a href="#" class="degree-link" id="fahrenheit-link">°F</a>
      </span>
 
-   <h6 id="temperature-description">Clouds</h6>
+   
     <br>
 
    <div class="row">
