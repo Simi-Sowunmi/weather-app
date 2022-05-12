@@ -1,4 +1,4 @@
-//Display the current day and time
+//DISPLAY THE CURRENT DATE AND TIME
 function formatTime(timestamp) {
  let time = new Date(timestamp);
  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -38,10 +38,9 @@ function formatDate(timestamp) {
  return formattedDate;
 }
 
-
+//DISPLAY LIVE WEATHER RESULTS
 function displayTemperature(response) {
   console.log(response.data)
-  let temperature = Math.round(response.data.current.temp_c);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
   let humidity = response.data.current.humidity;
@@ -55,8 +54,10 @@ function displayTemperature(response) {
   let dateElement = document.querySelector(".liveDate");
   let mainIcon = document.querySelector("#main-icon");
 
+  celsiusTemperature = response.data.current.temp_c;
+
   result.innerHTML = response.data.location.name.toUpperCase();
-  temperatureElement.innerHTML = `${temperature}`;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   description.innerHTML = response.data.current.condition.text;
   humidityElement.innerHTML = `Humidity- ${humidity}%`;
   pressureElement.innerHTML = `Pressure- ${pressure}`;
@@ -68,10 +69,8 @@ function displayTemperature(response) {
 
 }
 
-
 function displayLiveTemperature(response) {
   console.log(response.data)
-  let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
   let humidity = response.data.main.humidity;
@@ -83,8 +82,10 @@ function displayLiveTemperature(response) {
   let result = document.querySelector(".result");
   let mainIcon = document.querySelector("#main-icon")
 
+  celsiusTemperature = response.data.main.temp;
+
   result.innerHTML = response.data.name.toUpperCase();
-  temperatureElement.innerHTML = `${temperature}`;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   description.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `Humidity- ${humidity}%`;
   pressureElement.innerHTML = `Pressure- ${pressure}`;
@@ -122,7 +123,6 @@ function searchLondon(city) {
 
   axios.get(apiLondonUrl).then(displayTemperature)
 }
-
 
 
 //API WEATHER
@@ -175,24 +175,6 @@ function searchList4(event) {
   searchLondon(city);
 }
 
-//LET STATEMENTS TO SELECT LISTED CITIES IN ORDER TO ASSIGN FUNCTIONS
-let lagos = document.querySelector(".lagos");
-lagos.addEventListener("click", searchList)
-
-let paris = document.querySelector(".paris");
-paris.addEventListener("click", searchList2)
-
-let accra = document.querySelector(".accra");
-accra.addEventListener("click", searchList3)
-
-let london = document.querySelector(".london");
-london.addEventListener("click", searchList4)
-
-
-let form = document.querySelector("form");
-form.addEventListener("submit", searchForm);
-searchCity("Lagos")
-
 
 //GEOLOCATION API
 function searchCurrentCity(position) {
@@ -214,22 +196,54 @@ let currentButton = document.querySelector(".live-search");
 currentButton.addEventListener("click", currentLocation);
  
 
-// function convertToFahrenheit(event) {
-//    event.preventDefault();
-//    let temperatureElement = document.querySelector(".temperature");
-//    temperatureElement.innerHTML = 66;
-// }
+//LET STATEMENTS TO SELECT LISTED CITIES IN ORDER TO ASSIGN FUNCTIONS
+let lagos = document.querySelector(".lagos");
+lagos.addEventListener("click", searchList)
 
-// function convertToCelsius(event) {
-//  event.preventDefault();
-//  let temperatureElement = document.querySelector(".temperature");
-//  temperatureElement.innerHTML = 19;
-// }
+let paris = document.querySelector(".paris");
+paris.addEventListener("click", searchList2)
 
-// let fahrenheitLink = document.querySelector("#fahrenheit-link");
-// fahrenheitLink.addEventListener("click", convertToFahrenheit);
+let accra = document.querySelector(".accra");
+accra.addEventListener("click", searchList3)
+
+let london = document.querySelector(".london");
+london.addEventListener("click", searchList4)
 
 
-// let celsiusLink = document.querySelector("#celsius-link");
-// celsiusLink.addEventListener("click", convertToCelsius);
+let form = document.querySelector("form");
+form.addEventListener("submit", searchForm);
 
+
+//UNIT CONVERSION
+function convertToFahrenheit(event) {
+   event.preventDefault();
+   let temperatureElement = document.querySelector(".temperature");
+
+   //REMOVE THE ACTIVE CLASS FROM THE CELSIUS LINK
+   celsiusLink.classList.remove("active")
+   fahrenheitLink.classList.add("active");
+
+   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".temperature");
+
+  //REMOVE THE ACTIVE CLASS FROM THE FAHRENHEIT LINK
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active")
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
+
+searchCity("Lagos")

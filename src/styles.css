@@ -91,12 +91,25 @@ font-weight: 300;
     text-decoration: none;
     position: relative;
     top: -30px;
-    color: white;
+    color: black;
+}
+
+.degree-link:hover {
+    color: black;
 }
 
 .hyphen {
     position: relative;
     top: -30px;
+    color: white;
+}
+
+.active {
+    color: white;
+    cursor: default;
+}
+
+.active:hover {
     color: white;
 }
 
