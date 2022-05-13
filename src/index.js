@@ -38,9 +38,233 @@ function formatDate(timestamp) {
  return formattedDate;
 }
 
+//FORECAST DAY
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000)
+  let day = date.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+  return days[day];
+}
+
+//WEATHER FORECAST FOR LIVE SEARCH
+function displayForecast(response) {
+  let forecast = response.data.forecast.forecastday;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+    <span
+     <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.date_epoch)}</h5>
+      <img
+        src="assets/icons/${forecastDay.day.condition.code}.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.day.condition.text}</p>
+      <div class="forecast-details">
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.day.maxtemp_c)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.day.mintemp_c)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.day.avghumidity}%</h6></span>
+      </div>
+      <div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+
+//WEATHER FORECAST FOR CURRENT LOCATION
+function displayLiveForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 3) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+     <span
+      <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.dt)}</h5>
+      <img
+        src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.weather[0].description}</p>
+      <div class="forecast-details"
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.temp.max)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.humidity}%</h6></span>
+      </div>
+      </div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+    }
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+//WEATHER FORECAST FOR LAGOS LINK
+function displayLagosForecast(response) {
+  let forecast = response.data.forecast.forecastday;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+    <span
+     <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.date_epoch)}</h5>
+      <img
+        src="assets/icons/${forecastDay.day.condition.code}.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.day.condition.text}</p>
+      <div class="forecast-details">
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.day.maxtemp_c)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.day.mintemp_c)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.day.avghumidity}%</h6></span>
+      </div>
+      <div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+//WEATHER FORECAST FOR PARIS LINK
+function displayParisForecast(response) {
+  let forecast = response.data.forecast.forecastday;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+    <span
+     <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.date_epoch)}</h5>
+      <img
+        src="assets/icons/${forecastDay.day.condition.code}.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.day.condition.text}</p>
+      <div class="forecast-details">
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.day.maxtemp_c)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.day.mintemp_c)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.day.avghumidity}%</h6></span>
+      </div>
+      <div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+//WEATHER FORECAST FOR ACCRA LINK
+function displayAccraForecast(response) {
+  let forecast = response.data.forecast.forecastday;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+    <span
+     <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.date_epoch)}</h5>
+      <img
+        src="assets/icons/${forecastDay.day.condition.code}.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.day.condition.text}</p>
+      <div class="forecast-details">
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.day.maxtemp_c)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.day.mintemp_c)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.day.avghumidity}%</h6></span>
+      </div>
+      <div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+//WEATHER FORECAST FOR LONDON LINK
+function displayLondonForecast(response) {
+  let forecast = response.data.forecast.forecastday;
+  let forecastElement = document.querySelector("#forecast")
+
+  let forecastHTML = `<span class="row gx-3">`;
+  forecast.forEach(function (forecastDay) {
+   forecastHTML = forecastHTML +
+     `
+     <div class="card col-12" style="width: 18rem">
+     <div class="card-body">
+    <span
+     <h5 class="card-title weather-forecast-date">${formatDay(forecastDay.date_epoch)}</h5>
+      <img
+        src="assets/icons/${forecastDay.day.condition.code}.png"
+        alt=""
+        width="42"
+      />
+      <p class="weather-forecast-temperature">${forecastDay.day.condition.text}</p>
+      <div class="forecast-details">
+      <span class="weather-forecast-temperature-max">Temperature- ${Math.round(forecastDay.day.maxtemp_c)}°</span>
+      <span class="weather-forecast-temperature-min">${Math.round(forecastDay.day.mintemp_c)}°</span>
+      <span><h6 class="forecast-humidity">Humidity-${forecastDay.day.avghumidity}%</h6></span>
+      </div>
+      <div class="forecast-details">
+      </div>
+      </div>
+    </div> `;
+  });
+
+    forecastHTML = forecastHTML + `</span>`
+    forecastElement.innerHTML = forecastHTML;
+}
+
+
 //DISPLAY LIVE WEATHER RESULTS
+function getForecast(city) {
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=no&alerts=no`;
+//https://api.weatherapi.com/v1/forecast.json?key=900cc2ae081d424d98e125751222304&q=Texas&days=7&aqi=no&alerts=no
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemperature(response) {
-  console.log(response.data)
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
   let humidity = response.data.current.humidity;
@@ -67,10 +291,17 @@ function displayTemperature(response) {
   mainIcon.setAttribute("src",`assets/icons/${response.data.current.condition.code}.png`);
   mainIcon.setAttribute("alt", response.data.current.condition.text);
 
+  getForecast(response.data.location.name);
+}
+
+function getLiveForecast(coordinates) {
+  apiKey = "044a056e32379d4d1f99d87630c1a498";
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  
+  axios.get(apiUrl).then(displayLiveForecast);
 }
 
 function displayLiveTemperature(response) {
-  console.log(response.data)
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector("#temperature-description");
   let humidity = response.data.main.humidity;
@@ -92,15 +323,34 @@ function displayLiveTemperature(response) {
   windSpeedElement.innerHTML = `Wind Speed- ${windSpeed} km/h`;
   mainIcon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   mainIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getLiveForecast(response.data.coord);
 }
 
 
 //API TO SHOW THE WEATHER OF CITIES LISTED BY CLICKING ON THEM
+function getLagosForecast(city) {
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=no&alerts=no`;
+
+  axios.get(apiUrl).then(displayLagosForecast);
+}
+
 function searchLagos(city) { 
   let apiKey = "e373d49861284b7b9b990052220705";
   let apiLagosUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
 
   axios.get(apiLagosUrl).then(displayTemperature)
+
+  getLagosForecast(data.location.name)
+}
+
+
+function getParisForecast(city) {
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=no&alerts=no`;
+
+  axios.get(apiUrl).then(displayParisForecast);
 }
 
 function searchParis(city) { 
@@ -108,20 +358,42 @@ function searchParis(city) {
   let apiParisUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
 
   axios.get(apiParisUrl).then(displayTemperature)
+
+  getParisForecast(data.location.name)
+}
+
+
+function getAccraForecast(city) {
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=no&alerts=no`;
+
+  axios.get(apiUrl).then(displayAccraForecast);
 }
 
 function searchAccra(city) { 
   let apiKey = "e373d49861284b7b9b990052220705";
   let apiAccraUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
 
-  axios.get(apiAccraUrl).then(displayTemperature)
+  axios.get(apiAccraUrl).then(displayTemperature);
+
+  getAccraForecast(data.location.name);
+}
+
+
+function getLondonForecast(city) {
+  let apiKey = "e373d49861284b7b9b990052220705";
+  let apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=no&alerts=no`;
+
+  axios.get(apiUrl).then(displayLondonForecast);
 }
 
 function searchLondon(city) { 
   let apiKey = "e373d49861284b7b9b990052220705";
   let apiLondonUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no&alerts=no`;
 
-  axios.get(apiLondonUrl).then(displayTemperature)
+  axios.get(apiLondonUrl).then(displayTemperature);
+
+  getLondonForecast(data.location.name);
 }
 
 
